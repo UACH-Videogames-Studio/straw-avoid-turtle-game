@@ -12,4 +12,9 @@ public class CameraMovement : MonoBehaviour
         if (shouldContinueMoving)
             transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);  
     }
+
+    public void SetShouldContinueMovement(bool value)
+    {
+        shouldContinueMoving = value;
+    }
 }
