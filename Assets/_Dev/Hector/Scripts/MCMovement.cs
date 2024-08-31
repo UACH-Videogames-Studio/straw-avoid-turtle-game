@@ -36,7 +36,15 @@ public class MCMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other) 
     {
-        // Código de muerte
-        Debug.Log("FIN DEL JUEGO");
+        if (other.gameObject.CompareTag("Killzone"))
+        {
+            // Código de muerte por zona de muerte
+            Debug.Log("FIN DEL JUEGO POR ZONA DE MUERTE");
+        }
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            // Código de muerte por enemigo
+            Debug.Log("FIN DEL JUEGO POR ENEMIGO");
+        }
     }
 }
