@@ -5,7 +5,7 @@ using UnityEngine;
 public class BackgroundLoopLogic : MonoBehaviour
 {
     [SerializeField] private Camera mainCamera;
-    [SerializeField] private bool isGameFinished = false;
+    [SerializeField] private bool shouldContinueLooping = true;
     private float previousLoopThreshold = 0f;
 
     void Start()
@@ -16,18 +16,20 @@ public class BackgroundLoopLogic : MonoBehaviour
         }        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        CheckBackgroundLoopCondition();
+        if (shouldContinueLooping)
+        {
+            LoopBackground();
+        }
     }
 
-    private void CheckBackgroundLoopCondition()
+    private void LoopBackground()
     {
         float cameraCurrentPosition = mainCamera.transform.position.y;
         float currentLoopThreshold = Mathf.Floor(cameraCurrentPosition / 9) * 9;
 
-        if (currentLoopThreshold > previousLoopThreshold && !isGameFinished)
+        if (currentLoopThreshold > previousLoopThreshold)
         {
             previousLoopThreshold = currentLoopThreshold;
             transform.position += new Vector3(0, 9, 0);

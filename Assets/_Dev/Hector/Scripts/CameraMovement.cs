@@ -5,9 +5,11 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 1f;
+    [SerializeField] private bool shouldContinueMoving = true;
     
     void Update()
     {
-        transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);  
+        if (shouldContinueMoving)
+            transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);  
     }
 }
