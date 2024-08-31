@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 856460710}
   - component: {fileID: 856460709}
   m_Layer: 0
-  m_Name: T_Straw_001
+  m_Name: StrawSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -454,11 +454,43 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 856460708}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.8736189, y: -0.40723336, z: -0.08109161}
   m_LocalScale: {x: 0.1962, y: 0.1962, z: 0.1962}
   m_ConstrainProportionsScale: 0
   m_Children: []
+  m_Father: {fileID: 1018214936}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1018214935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1018214936}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1018214936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018214935}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8736189, y: 0.40723336, z: 0.08109161}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 856460710}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1091701285
@@ -558,6 +590,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1091701288}
-  - {fileID: 856460710}
   - {fileID: 759287089}
   - {fileID: 170095628}
+  - {fileID: 1018214936}
