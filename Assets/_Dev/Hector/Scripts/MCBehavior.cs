@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using Stariluz.GameControl;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,6 +10,9 @@ public class MCBehavior : MonoBehaviour
     [SerializeField] private float rotationSpeed = 0.8f;
     private bool allowControl = true;
 
+    [SerializeReference]
+    protected MCInput movementInput = new();
+
     void Update()
     {
         if (allowControl)
@@ -18,7 +21,7 @@ public class MCBehavior : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other) 
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Killzone"))
         {
@@ -41,25 +44,35 @@ public class MCBehavior : MonoBehaviour
     }
 
 
-    // Función encargada de manejar los inputs del jugador. Es decir, qué teclas/botones está presionando.
+    // Función encargada de conectar el input con el movimiento
     private void InputHandler()
     {
-        if (Input.GetKey(KeyCode.UpArrow))
+        Vector2 movement = movementInput.GetBehaviourValue();
+        transform.Translate(movement.y * Vector2.up * moveSpeed * Time.deltaTime);
+        transform.Rotate(0, 0, -Math.Sign(movement.x) * rotationSpeed);
+    }
+
+
+    protected class MCInput : MultiplatformBehaviour<Vector2>
+    {
+        [SerializeField] protected string inputHorizontalAxis = "Horizontal";
+        [SerializeField] protected string inputVerticalAxis = "Vertical";
+        [SerializeField] protected JoysticController joysticController;
+
+        public override Vector2 PCBehaviour()
         {
-            transform.Translate(Vector2.up * moveSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            transform.Translate(Vector2.down * moveSpeed * Time.deltaTime);
+            float movementX = Input.GetAxis(inputHorizontalAxis);
+            float movementY = Input.GetAxis(inputVerticalAxis);
+            Vector2 movement = new Vector2(movementX, movementY);
+
+
+            return movement;
         }
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        public override Vector2 TouchMobileBehaviour()
         {
-            transform.Rotate(0, 0, -rotationSpeed);
-        }
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.Rotate(0, 0, rotationSpeed);
+            return joysticController.movement;
         }
     }
+
 }

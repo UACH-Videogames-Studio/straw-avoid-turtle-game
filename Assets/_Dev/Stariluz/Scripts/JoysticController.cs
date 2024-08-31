@@ -19,7 +19,7 @@ namespace Stariluz.GameControl
         }
         private bool isMoving = false;
         private float joyconLimitRadius = 0;
-        public float sensibility;
+        public float sensibility=1;
         private Vector2 originPosition;
         private Vector2 lastPosition;
 

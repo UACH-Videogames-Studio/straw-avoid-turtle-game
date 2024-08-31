@@ -253,6 +253,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6144a3860c269764c973fe6d16bd2d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  screenPassed:
+    m_PersistentCalls:
+      m_Calls: []
   mainCamera: {fileID: 1059962885}
   shouldContinueLooping: 1
   bgHeightUnits: 9
@@ -1283,8 +1286,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 018ebee1ddf4b8e489b5a3ec6519beb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDeath:
+    m_PersistentCalls:
+      m_Calls: []
   moveSpeed: 5
   rotationSpeed: 1.4
+  movementInput:
+    rid: 2549418544471474176
+  references:
+    version: 2
+    RefIds:
+    - rid: 2549418544471474176
+      type: {class: MCBehavior/MCInput, ns: , asm: Assembly-CSharp}
+      data:
+        inputHorizontalAxis: Horizontal
+        inputVerticalAxis: Vertical
+        joysticController: {fileID: 2100736199}
 --- !u!50 &1254925479
 Rigidbody2D:
   serializedVersion: 4
@@ -2289,7 +2306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joystick: {fileID: 586827032}
   joystickLimits: {fileID: 316674794}
-  sensibility: 0
+  sensibility: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
