@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isMovementToRight: 1
-  _velocityFactor: 7
+  _velocityFactor: 5
 --- !u!50 &1495138189301408298
 Rigidbody2D:
   serializedVersion: 4

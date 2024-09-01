@@ -366,9 +366,10 @@ GameObject:
   - component: {fileID: 629832567}
   - component: {fileID: 629832568}
   - component: {fileID: 629832569}
-  m_Layer: 0
+  - component: {fileID: 629832570}
+  m_Layer: 6
   m_Name: SpawnerRight
-  m_TagString: Untagged
+  m_TagString: EnemyDespawnZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -446,6 +447,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMovementToRight: 0
+--- !u!50 &629832570
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 629832566}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &633381388
 GameObject:
   m_ObjectHideFlags: 0
@@ -457,7 +485,7 @@ GameObject:
   - component: {fileID: 633381389}
   - component: {fileID: 633381391}
   - component: {fileID: 633381390}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Killzone Left
   m_TagString: Killzone
   m_Icon: {fileID: 0}
@@ -598,7 +626,7 @@ GameObject:
   - component: {fileID: 695597064}
   - component: {fileID: 695597066}
   - component: {fileID: 695597065}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Killzone Up
   m_TagString: Killzone
   m_Icon: {fileID: 0}
@@ -727,7 +755,7 @@ GameObject:
   m_Component:
   - component: {fileID: 795136823}
   - component: {fileID: 795136824}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: '@TurtlesSpawners'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -767,8 +795,8 @@ MonoBehaviour:
   container: {fileID: 1448772334}
   spawnerLeft: {fileID: 2113550204}
   spawnerRight: {fileID: 629832569}
-  minWaitTime: 1
-  maxWaitTime: 3
+  minWaitTime: 2
+  maxWaitTime: 5
 --- !u!1 &1059962883
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,7 +915,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1065959711}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: '@Killzones'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1088,7 +1116,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  amountOfScreensForGameEnd: 8
+      - m_Target: {fileID: 795136824}
+        m_TargetAssemblyTypeName: TurtlesSpawnManager, Assembly-CSharp
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  amountOfScreensForGameEnd: 2
 --- !u!1 &1254925474
 GameObject:
   m_ObjectHideFlags: 0
@@ -1141,7 +1181,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0050377846, y: -0.01590705}
+  m_Offset: {x: -0.0050377846, y: -1.17}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 1}
@@ -1152,7 +1192,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.29579693, y: 2.3425584}
+  m_Size: {x: 0.22, y: 2.07}
   m_EdgeRadius: 0
 --- !u!212 &1254925476
 SpriteRenderer:
@@ -1272,6 +1312,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 795136824}
+        m_TargetAssemblyTypeName: TurtlesSpawnManager, Assembly-CSharp
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   moveSpeed: 10
   maxVelocity: 6
   maxRotationSpeed: 600
@@ -1317,7 +1369,7 @@ GameObject:
   - component: {fileID: 1336217080}
   - component: {fileID: 1336217082}
   - component: {fileID: 1336217081}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Killzone Right
   m_TagString: Killzone
   m_Icon: {fileID: 0}
@@ -2119,7 +2171,7 @@ GameObject:
   - component: {fileID: 2092112797}
   - component: {fileID: 2092112799}
   - component: {fileID: 2092112798}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Killzone Down
   m_TagString: Killzone
   m_Icon: {fileID: 0}
@@ -2281,9 +2333,10 @@ GameObject:
   - component: {fileID: 2113550202}
   - component: {fileID: 2113550203}
   - component: {fileID: 2113550204}
-  m_Layer: 0
+  - component: {fileID: 2113550205}
+  m_Layer: 6
   m_Name: SpawnerLeft
-  m_TagString: Untagged
+  m_TagString: EnemyDespawnZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2361,6 +2414,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isMovementToRight: 1
+--- !u!50 &2113550205
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113550201}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
