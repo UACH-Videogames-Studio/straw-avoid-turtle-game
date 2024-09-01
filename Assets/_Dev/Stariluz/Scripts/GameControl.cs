@@ -11,7 +11,7 @@ namespace Stariluz.GameControl
         public abstract T TouchMobileBehaviour();
         public MultiplatformBehaviour()
         {
-            SetBehaviourToExecute(ControlsEnum.PC);
+            SetBehaviourToExecute(ControlsEnum.Touch);
         }
         public MultiplatformBehaviour(ControlsEnum controlsEnum)
         {
