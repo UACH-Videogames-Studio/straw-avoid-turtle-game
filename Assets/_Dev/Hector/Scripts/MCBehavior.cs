@@ -25,7 +25,7 @@ public class MCBehavior : MonoBehaviour
     {
         if (allowControl)
         {
-            Vector2 movement = GetMobileMovement();
+            Vector2 movement = GetPCMovement();
             if (movement.magnitude != 0)
             {
                 rb.AddForce(moveSpeed * Time.deltaTime * movement.normalized, ForceMode2D.Impulse);

@@ -5,11 +5,11 @@ using UnityEngine;
 public class Turtle : MonoBehaviour
 {
     protected new Rigidbody2D rigidbody;
-    [SerializeField] protected bool isRightMovement = true;
+    [SerializeField] protected bool _isMovementToRight = true;
     [SerializeField] private float _velocityFactor = 100;
 
     [SerializeField]
-    protected float velocityFactor
+    public float velocityFactor
     {
         get
         {
@@ -18,6 +18,19 @@ public class Turtle : MonoBehaviour
         set
         {
             _velocityFactor = value;
+        }
+    }
+
+    [SerializeField]
+    public bool isMovementToRight
+    {
+        get
+        {
+            return _isMovementToRight;
+        }
+        set
+        {
+            _isMovementToRight = value;
         }
     }
     // Start is called before the first frame update
@@ -30,6 +43,6 @@ public class Turtle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rigidbody.velocity = new Vector2(velocityFactor*(isRightMovement?1:-1), rigidbody.velocity.y);
+        rigidbody.velocity = new Vector2(velocityFactor*(isMovementToRight?1:-1), rigidbody.velocity.y);
     }
 }
