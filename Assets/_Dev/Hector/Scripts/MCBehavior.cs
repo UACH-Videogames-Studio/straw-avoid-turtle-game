@@ -10,14 +10,17 @@ public class MCBehavior : MonoBehaviour
     [SerializeField] private float rotationSpeed = 0.8f;
     private bool allowControl = true;
 
-    [SerializeReference]
-    protected MCInput movementInput = new();
-
+    [SerializeField] protected string inputHorizontalAxis = "Horizontal";
+    [SerializeField] protected string inputVerticalAxis = "Vertical";
+    [SerializeField] protected JoysticController joysticController;
+    
     void Update()
     {
         if (allowControl)
         {
-            InputHandler();
+            Vector2 movement = GetPCMovement();
+            transform.Translate(movement.y * Vector2.up * moveSpeed * Time.deltaTime);
+            transform.Rotate(0, 0, -Math.Sign(movement.x) * rotationSpeed);
         }
     }
 
@@ -43,36 +46,18 @@ public class MCBehavior : MonoBehaviour
         allowControl = value;
     }
 
-
-    // Función encargada de conectar el input con el movimiento
-    private void InputHandler()
+    public Vector2 GetPCMovement()
     {
-        Vector2 movement = movementInput.GetBehaviourValue();
-        transform.Translate(movement.y * Vector2.up * moveSpeed * Time.deltaTime);
-        transform.Rotate(0, 0, -Math.Sign(movement.x) * rotationSpeed);
+        float movementX = Input.GetAxisRaw(inputHorizontalAxis);
+        float movementY = Input.GetAxisRaw(inputVerticalAxis);
+        Vector2 movement = new Vector2(movementX, movementY);
+
+
+        return movement;
     }
 
-
-    protected class MCInput : MultiplatformBehaviour<Vector2>
+    public Vector2 GetTouchMovement()
     {
-        [SerializeField] protected string inputHorizontalAxis = "Horizontal";
-        [SerializeField] protected string inputVerticalAxis = "Vertical";
-        [SerializeField] protected JoysticController joysticController;
-
-        public override Vector2 PCBehaviour()
-        {
-            float movementX = Input.GetAxis(inputHorizontalAxis);
-            float movementY = Input.GetAxis(inputVerticalAxis);
-            Vector2 movement = new Vector2(movementX, movementY);
-
-
-            return movement;
-        }
-
-        public override Vector2 TouchMobileBehaviour()
-        {
-            return joysticController.movement;
-        }
+        return joysticController.movement;
     }
-
 }
