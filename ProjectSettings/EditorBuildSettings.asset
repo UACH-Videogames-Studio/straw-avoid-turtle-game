@@ -8,6 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/_Dev/Leo/Menu.unity
+    guid: 488a131e27b15b74f944750d523c0463
+  - enabled: 1
+    path: Assets/_Dev/Leo/Level1.unity
+    guid: 9637e017cbcd3da44991c6fcd930eb99
   m_configObjects:
     com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000, guid: 09477e813c3072546a5b9beccaeeb18c, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 1e0467f8bde8ac544b17682851824b8e, type: 2}
