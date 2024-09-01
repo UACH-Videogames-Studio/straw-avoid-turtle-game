@@ -8,6 +8,7 @@ public class MCBehavior : MonoBehaviour
     public UnityEvent playerDeath;
     [SerializeField] private float moveSpeed = 2.2f;
     [SerializeField] private float maxVelocity = 4f;
+    [SerializeField] private float maxRotationSpeed = 30f;
     [SerializeField] private float decelerationFactor = 1f;
     // [SerializeField] private float rotationSpeed = 0.8f;
     private bool allowControl = true;
@@ -28,8 +29,16 @@ public class MCBehavior : MonoBehaviour
             if (movement.magnitude != 0)
             {
                 rb.AddForce(moveSpeed * Time.deltaTime * movement.normalized, ForceMode2D.Impulse);
-                float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg - 90;
-                rb.MoveRotation(angle);
+
+                float currentAngle = rb.rotation;
+                float targetAngle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg - 90;
+
+                float smoothedAngle = Mathf.LerpAngle(
+                    currentAngle,
+                    targetAngle,
+                    maxRotationSpeed * Time.deltaTime / Mathf.Abs(Mathf.DeltaAngle(currentAngle, targetAngle))
+                    );
+                rb.MoveRotation(smoothedAngle);
             }
             else if (rb.velocity.magnitude > 0.1)
             {
@@ -79,7 +88,7 @@ public class MCBehavior : MonoBehaviour
         return movement;
     }
 
-    public Vector2 GetTouchMovement()
+    public Vector2 GetMobileMovement()
     {
         return joysticController.movement;
     }

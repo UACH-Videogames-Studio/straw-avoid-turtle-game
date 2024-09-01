@@ -1271,6 +1271,7 @@ MonoBehaviour:
         m_CallState: 2
   moveSpeed: 5
   maxVelocity: 6
+  maxRotationSpeed: 400
   decelerationFactor: 1
   inputHorizontalAxis: Horizontal
   inputVerticalAxis: Vertical
