@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public UnityEvent gameWon;
     [Range(0, 20)]
-    [SerializeField] protected int amountOfScreensForGameEnd;
+    [SerializeField] public int amountOfScreensForGameEnd;
     protected int screensPassedCounter = 0;
 
 
