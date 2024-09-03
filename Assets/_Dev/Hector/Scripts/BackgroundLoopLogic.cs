@@ -33,6 +33,11 @@ public class BackgroundLoopLogic : MonoBehaviour
         shouldContinueLooping = value;
     }
 
+    public void PullScreensBack(int amountOfScreens)
+    {
+        transform.position -= new Vector3(0, bgHeightUnits * amountOfScreens, 0);
+    }
+
     private void LoopBackground()
     {
         float cameraCurrentPosition = mainCamera.transform.position.y;
