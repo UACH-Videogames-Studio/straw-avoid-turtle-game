@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 1f;
-    private bool shouldContinueMoving = true;
+    [SerializeField] private bool shouldContinueMoving = true;
     private bool isMovementStopSequenceActive = false;
     protected float movementStopDuration = 9f;
     protected float elapsedTime = 0f;

@@ -10,7 +10,7 @@ public class Turtle : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
-        rigidbody.velocity = new Vector2(velocityFactor, rigidbody.velocity.y);
+        rigidbody.velocity = new Vector2(velocityFactor*(isMovementToRight?1:-1), rigidbody.velocity.y);
     }
 
     // Update is called once per frame
