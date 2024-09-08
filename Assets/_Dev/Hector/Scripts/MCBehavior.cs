@@ -8,6 +8,7 @@ public class MCBehavior : MonoBehaviour
     public UnityEvent playerDeath;
     [SerializeField] private float moveSpeed = 2.2f;
     [SerializeField] private float maxVelocity = 4f;
+    [SerializeField] private float rotationSpeed = 3f;
     [SerializeField] private float maxRotationSpeed = 30f;
     [SerializeField] private float decelerationFactor = 1f;
     // [SerializeField] private float rotationSpeed = 0.8f;
@@ -34,85 +35,15 @@ public class MCBehavior : MonoBehaviour
     {
         if (allowControl)
         {
-            Vector2 movement = GetPCMovement();
-            if (movement.magnitude != 0)
-            {
-                rb.AddForce(moveSpeed * Time.deltaTime * movement.normalized, ForceMode2D.Impulse);
+            Vector2 input = GetPCMovement();
 
-                float currentAngle = rb.rotation;
-                float targetAngle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg - 90;
-
-                float smoothedAngle = Mathf.LerpAngle(
-                    currentAngle,
-                    targetAngle,
-                    maxRotationSpeed * Time.deltaTime / Mathf.Abs(Mathf.DeltaAngle(currentAngle, targetAngle))
-                    );
-                rb.MoveRotation(smoothedAngle);
-            }
-            else if (rb.velocity.magnitude > 0.1)
-            {
-                rb.AddForce(decelerationFactor * Time.deltaTime * -rb.velocity, ForceMode2D.Impulse);
-            }
-            else
-            {
-                rb.velocity = Vector2.zero;
-            }
-
-            if (rb.velocity.magnitude > maxVelocity)
-            {
-                rb.velocity = rb.velocity.normalized * maxVelocity;
-            }
+            transform.Translate(input.y * Vector2.up * moveSpeed * Time.deltaTime);
+            transform.Rotate(0, 0, -Math.Sign(input.x) * rotationSpeed);
         }
         // Se supone que este código que sigue es para cuando el jugador gana
         else
         {
             isInvincible = true;
-            /* float moveTime = 1.0f;
-            Vector3 startPosition = transform.position;
-            Vector3 targetPosition = new Vector3(startPosition.x, (gameManager.amountOfScreensForGameEnd * 9f) + 4.5f, startPosition.z);
-            float elapsedTime = 0f;
-
-            float endRotationTime = 1.0f;
-
-            float currentZAngle = transform.eulerAngles.z;
-            float targetAngle = Mathf.Abs(currentZAngle - 0) <= Mathf.Abs(currentZAngle - 180) ? 0f : 180f;
-
-            if (elapsedTime < moveTime)
-            {
-                elapsedTime += Time.deltaTime;
-                float t = elapsedTime / moveTime;
-
-                transform.position = Vector3.Lerp(startPosition, targetPosition, t);
-                float t2 = Mathf.Clamp01(elapsedTime / rotationTime);
-
-                // Smoothly interpolate rotation
-                float newAngle = Mathf.LerpAngle(transform.eulerAngles.z, targetAngle, t2);
-                transform.rotation = Quaternion.Euler(0f, 0f, newAngle);
-            }
-            else
-            {
-                // Ensure the GameObject reaches the exact target position
-                transform.position = targetPosition;
-                this.enabled = false; // Disable the script after movement
-            } */
-            /* float startAngle = transform.eulerAngles.z;
-            targetAngle = Mathf.Abs(startAngle - 0) <= Mathf.Abs(startAngle - 180) ? 0f : 180f;
-
-            if (elapsedTime < rotationTime)
-            {
-                elapsedTime += Time.deltaTime;
-                float t = elapsedTime / rotationTime;
-
-                // Linearly interpolate rotation
-                float newAngle = Mathf.Lerp(startAngle, targetAngle, t);
-                transform.rotation = Quaternion.Euler(0f, 0f, newAngle);
-            }
-            else
-            {
-                // Ensure the rotation is exactly at the target angle at the end
-                transform.rotation = Quaternion.Euler(0f, 0f, targetAngle);
-                this.enabled = false; // Disable the script after rotation
-            } */
         }
     }
 
@@ -141,10 +72,25 @@ public class MCBehavior : MonoBehaviour
 
     public Vector2 GetPCMovement()
     {
-        float movementX = Input.GetAxisRaw(inputHorizontalAxis);
-        float movementY = Input.GetAxisRaw(inputVerticalAxis);
-        Vector2 movement = new Vector2(movementX, movementY);
 
+        Vector2 movement = Vector2.zero;
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            movement.y = 1;
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            movement.y = -1;
+        }
+
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            movement.x = -1;
+        }
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            movement.x = 1;
+        }
         return movement;
     }
 
