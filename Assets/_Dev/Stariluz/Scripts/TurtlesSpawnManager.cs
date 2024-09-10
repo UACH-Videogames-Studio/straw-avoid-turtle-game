@@ -25,7 +25,14 @@ public class TurtlesSpawnManager : MonoBehaviour
             waitTime -= Time.deltaTime;
             if (waitTime <= 0)
             {
-                TurtlesSpawner origin = GetRandomSpawner();
+                TurtlesSpawner origin;
+                
+                if(Random.value < 0.5f ){
+                    origin=spawnerLeft;
+                }else{
+                    origin=spawnerRight;
+                }
+
                 Vector3 position = GetRandomSpawnPosition(origin.transform.position);
                 GameObject turtle = Instantiate(
                     prefab,
